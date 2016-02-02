@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --config webpack.config.js && node src/index.js",
-    "start": "webpack -p --config webpack.config.prod.js && node src/index.js"
+    "dev": "webpack --config webpack.config.js && NODE_ENV=development node src/index.js",
+    "start": "webpack --config webpack.config.prod.js -p && NODE_ENV=production node src/index.js"
   },
   "author": "",
   "license": "ISC",
