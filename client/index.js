@@ -9,5 +9,5 @@ const history = createBrowserHistory();
 
 ReactDOM.render(
 	<Router children={routes} history={history} />,
-	document.getElementById("app")
+	document.getElementById("content")
 );

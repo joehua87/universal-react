@@ -5,10 +5,6 @@ import { renderToString } from "react-dom/server";
 export default class HTML extends React.Component {
 	constructor(props) {
 		super(props);
-		this.propTypes = {
-			assets: React.PropTypes.object,
-			component: React.PropTypes.object
-		}
 	}
 	render() {
 		const { assets, component } = this.props;
@@ -22,6 +18,8 @@ export default class HTML extends React.Component {
 					{Object.keys(assets.styles).map((style, i) =>
 						<link href={assets.styles[style]} key={i} media="screen, projection"
 						rel="stylesheet" type="text/css"/>)}
+
+					<style>{require('../common/scss/main.css')}</style>
 				</head>
 
 				<body>
@@ -38,4 +36,9 @@ export default class HTML extends React.Component {
 			</html>
 		)
 	}
+}
+
+HTML.propTypes = {
+	assets: React.PropTypes.object,
+	component: React.PropTypes.object
 }

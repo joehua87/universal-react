@@ -18,7 +18,7 @@ import HTML from "./HTML";
 // Initialize express server
 const server = express();
 
-server.use(express.static(path.join(__dirname, "common")));
+server.use('/static', express.static(path.join(__dirname, "../dist")));
 
 // Get the request
 server.use((req, res) => {
