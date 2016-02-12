@@ -12,6 +12,7 @@ let webpack_isomorphic_tools = new isomorphicToolsPlugin(require("./webpack-isom
 
 module.exports = {
 	entry: [
+		"webpack-hot-middleware/client",
 		"./client"
 	],
 	output: {
@@ -39,6 +40,7 @@ module.exports = {
 	},
 	plugins: [
 		new webpack.optimize.OccurenceOrderPlugin(),
+		new webpack.HotModuleReplacementPlugin(),
 		new webpack.NoErrorsPlugin(),
 		webpack_isomorphic_tools
 	]

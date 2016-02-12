@@ -3,6 +3,9 @@
 import express from "express";
 import path from "path";
 
+import webpack from "webpack";
+import webpackDevMiddleware from "webpack-dev-middleware";
+import webpackHotMiddleware from "webpack-hot-middleware";
 import webpackConfig from "../webpack.config";
 
 import React from "react";
@@ -17,6 +20,16 @@ import HTML from "./HTML";
 
 // Initialize express server
 const server = express();
+
+
+if(process.env.NODE_ENV == "development") {
+	// Here we plug webpack middleware for hot reloading.
+	// webpack-dev-middle watches the source code for changes and recompiles the bundle
+	// webpack-hot-middleware Notifies the browser when a new bundle has been compiled
+	const compiler = webpack(webpackConfig);
+	server.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: webpackConfig.output.publicPath }));
+	server.use(webpackHotMiddleware(compiler));
+}
 
 server.use('/static', express.static(path.join(__dirname, "../dist")));
 
