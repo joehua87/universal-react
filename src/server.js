@@ -35,6 +35,10 @@ server.use('/static', express.static(path.join(__dirname, "../dist")));
 
 // Get the request
 server.use((req, res) => {
+	if (process.env.NODE_ENV == "development") {
+		global.webpack_isomorphic_tools.refresh()
+	}
+	
 	// Use React Router to match our request with our components
 	const location = createLocation(req.url);
 	match({routes, location}, (error, redirectLocation, renderProps) => {
@@ -51,10 +55,6 @@ server.use((req, res) => {
 
 });
 function renderFullPage(renderProps) {
-	if (process.env.NODE_ENV == "development") {
-		global.webpack_isomorphic_tools.refresh()
-	}
-
 	return 	"<!DOCTYPE html>\n" + renderToString(<HTML assets={global.webpack_isomorphic_tools.assets()} 
 													component={<RoutingContext {...renderProps}/>} />);
 }

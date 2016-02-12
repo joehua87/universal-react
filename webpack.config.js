@@ -39,8 +39,8 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.HotModuleReplacementPlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.NoErrorsPlugin(),
 		webpack_isomorphic_tools
 	]
